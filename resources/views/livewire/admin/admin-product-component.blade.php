@@ -23,6 +23,10 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                        @if(Session::has('message'))
+                        <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
+                        @endif
+
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -31,7 +35,7 @@
                                     <th>Name</th>
                                     <th>Stock</th>
                                     <th>Price</th>
-                                    <th>Category</th>
+                                    <!-- <th>Category</th> -->
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -44,9 +48,12 @@
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->stock_status}}</td>
                                     <td>{{$product->regular_price}}</td>
-                                    <td>{{$product->category->name}}</td>
+
                                     <td>{{$product->created_at}}</td>
-                                    <td></td>
+                                    <td>
+                                        <a href="{{route('admin.editproduct',['product_slug'=>$product->slug])}}"><i class="fa fa-edit fa-2x text-info"></i></a>
+                                        <a href="#" style="margin-left:10px;" wire:click.prevent="deleteProduct({{$product->id}})"><i class="fa fa-times fa-2x text-danger"></i></a>
+                                    </td>
                                 </tr>
                                 @endforeach
 
@@ -54,6 +61,7 @@
 
                         </table>
                         {{$products->links()}}
+
                     </div>
                 </div>
             </div>
