@@ -35,7 +35,9 @@
                                     <th>Name</th>
                                     <th>Stock</th>
                                     <th>Price</th>
-                                    <!-- <th>Category</th> -->
+
+                                    <th>Sale Price</th>
+                                    <th>Category</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -49,6 +51,9 @@
                                     <td>{{$product->stock_status}}</td>
                                     <td>{{$product->regular_price}}</td>
 
+
+                                    <td>{{$product->sale_price}}</td>
+                                    <td>{{$product->category->name}}</td>
                                     <td>{{$product->created_at}}</td>
                                     <td>
                                         <a href="{{route('admin.editproduct',['product_slug'=>$product->slug])}}"><i class="fa fa-edit fa-2x text-info"></i></a>
